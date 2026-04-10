@@ -27,6 +27,7 @@ jobs:
         env:
           SWITCHBOT_TOKEN: ${{ secrets.SWITCHBOT_TOKEN }}
           SWITCHBOT_SECRET: ${{ secrets.SWITCHBOT_SECRET }}
-          SWITCHBOT_DEVICE_ID: ${{ secrets.SWITCHBOT_DEVICE_ID }}
+          SWITCHBOT_DEVICE_ID_AM: ${{ secrets.SWITCHBOT_DEVICE_ID_AM }}
+          SWITCHBOT_DEVICE_ID_PM: ${{ secrets.SWITCHBOT_DEVICE_ID_PM }}
           WEATHER_CITY_ID: ${{ secrets.WEATHER_CITY_ID }}
         run: python weather_light.py
