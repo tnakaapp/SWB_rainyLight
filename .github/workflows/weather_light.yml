@@ -1,0 +1,32 @@
+name: Weather Light Control
+
+on:
+  # 即時実行（手動トリガー）
+  workflow_dispatch:
+  # 毎日3時（UTC 18:00 = JST 03:00）
+  schedule:
+    - cron: "0 18 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          SWITCHBOT_TOKEN: ${{ secrets.SWITCHBOT_TOKEN }}
+          SWITCHBOT_SECRET: ${{ secrets.SWITCHBOT_SECRET }}
+          SWITCHBOT_DEVICE_ID: ${{ secrets.SWITCHBOT_DEVICE_ID }}
+          WEATHER_CITY_ID: ${{ secrets.WEATHER_CITY_ID }}
+        run: python weather_light.py
