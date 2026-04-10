@@ -73,7 +73,7 @@ def control_light(device_id: str, rain: int, label: str):
         "commandType": "command"
     })
 
-    brightness = "10"
+    brightness = "15"
     # r = round(255 * (1 - rain / 100))
     # g = round(255 * (1 - rain / 100))
     # b = 255
@@ -82,14 +82,16 @@ def control_light(device_id: str, rain: int, label: str):
 
     if rain >= 80:
         color = "0:0:255"  # 降水確率80%以上
-    elif rain >= 60:
-        color = "25:25:255"  # 降水確率60-79%
-    elif rain >= 40:
-        color = "50:50:200"  # 降水確率40-59%
-    elif rain >= 20:
-        color = "100:100:255"  # 降水確率20-39%
+    elif rain > 60:
+        color = "25:25:255"  # 降水確率61-79%
+    elif rain > 40:
+        color = "50:50:200"  # 降水確率41-59%
+    elif rain > 20:
+        color = "100:100:255"  # 降水確率21-39%
+    elif rain > 0:
+        color = "255:255:255"  # 降水確率1-19%
     else:
-        color = "255:131:51"  # 降水確率19%以下
+        color = "255:131:51"  # 降水確率0%
         # colorTemperature = 2700   
     
     print(f"{label}（{rain}%）→ {color} で点灯")
